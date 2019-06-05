@@ -1,0 +1,44 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="login.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Log in</title>
+</head>
+<body>
+<div class="login-page">
+<h3 id="log"></h3>
+  <div class="form">
+    <form class="login-form" action="login" method="post">
+      <input type="text" placeholder="nazwa" name="name" required>
+      <input type="password" placeholder="hasło" name="password" required/>
+      <button>zaloguj</button>
+    </form>
+  </div>
+</div> 
+</body>
+<script>
+
+function readCookie(name) {
+	  var nameEQ = name + "=";
+	  var ca = document.cookie.split(';');
+	  for(var i=0;i < ca.length;i++) {
+	      var c = ca[i];
+	      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+	        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	  }
+	  return null;
+	}
+var cookie = readCookie('info');
+if(cookie === 'error'){
+	var log = document.getElementById("log");
+	log.innerHTML = 'Nazwa już istnieje lub niepoprawne hasło';
+}
+
+if(cookie === 'locked'){
+	var log = document.getElementById("log");
+	log.innerHTML = 'Użytkownik jest już zalogowany';
+}
+</script>
+</html>
